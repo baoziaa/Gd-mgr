@@ -3,7 +3,7 @@ const Koa = require('koa');
 
 const utils = require('./helpers/utils/index')
 
-// console.log(utils);
+// console.log(utils.getYearByTimestamp);
 
 // console.log(getYearByTimeStamp(new Date().getTime()));
 
