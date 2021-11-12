@@ -1,5 +1,8 @@
 const router = require('@koa/router');  //引入@koa/router
 const mongoose = require('mongoose'); //引入mongoose,拿到对应的Usermodel
+const { getBody } = require('../../helpers/utils');
+const jwt = require('jsonwebtoken');
+const sign = require('jsonwebtoken/sign');
 
 const User = mongoose.model('User');//对应的Usermodel
 
@@ -12,7 +15,7 @@ authRouter.post('/register', async (ctx) => { //如果是get请求,/auth/registe
   const {
       account,
       password,
-  } = ctx.request.body;
+  } = getBody(ctx);
 
   const one = await User.findOne({  //异步操作,await等他加载之后判断是否已存在
       account,
@@ -43,7 +46,55 @@ authRouter.post('/register', async (ctx) => { //如果是get请求,/auth/registe
   };
 });
 authRouter.post('/login', async (ctx) => { //如果是get请求,/auth/register的路径就会响应里面的信息,ctx是context参数的缩写
-  ctx.body = '登陆成功';
+    const {
+        account,
+        password,
+    } = getBody(ctx);
+
+    // console.log(password,account);
+
+    //去找我们数据库有没有这个用户
+    const one = await User.findOne({    //因为返回的是一个Promise
+        account,    //为传进来我们的用户值
+    }).exec();
+    // console.log(one.password,one.account);
+    // console.log(password,account);
+
+    // console.log(one);
+    //判断有没有用户名或密码的情况
+    if(!one) {
+        ctx.body = {
+            code: 0,
+            msg: '用户名或密码错误',    //通过文案混淆视听,安全机制高一点
+            data: null,
+        };
+        
+        return;
+    }
+
+    const user = {  //重新构建一下
+        account: one.account,   //mongoose查到的数据,它是经过一系列处理的,不是纯粹的对象,所以生成token的时候就不能处理到这个对象,所以我们可以自己去构建一个
+    };
+
+    // 传入的密码等于数据库的密码的情况
+    if(one.password === password) {
+        ctx.body = {
+            code: 1,
+            msg: '登入成功', 
+            data: {
+                user,   //直接把user返回
+                token: jwt.sign(user, 'baozi'),  //引入jwt,用sign方法,第一个是传入的参数加密内容,第二个参数是密钥
+            },
+        };
+        return;
+    }
+    //密码错误的情况
+    ctx.body = {
+        code: 0,
+        msg: '用户名或密码错误',    //通过文案混淆视听,安全机制高一点
+        data: null,
+    };
+
 });
 
 module.exports = authRouter;  //导出这个路由

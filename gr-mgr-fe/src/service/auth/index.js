@@ -11,6 +11,9 @@ export const register = (account, password) => {
   });
 };
 
-export const login = () => {
-
+export const login = (account,password) => {    //这里拿到账户和密码
+    axios.post('http://localhost:3000/auth/login', { //post方法,把地址传过去
+        account,
+        password,
+    });
 };

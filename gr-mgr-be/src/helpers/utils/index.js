@@ -1,16 +1,7 @@
-const getYearByTimeStamp = (ts) => {
-  const date = new Date(ts);
-
-  return date.getFullYear();
+const getBody = (ctx) => {
+    return ctx.request.body || {};  //如果没有就返回去一个空对象
 }
 
-const getDateByTimeStamp = (ts) => {
-  const date = new Date(ts);
-
-  return date.getDate();
-}
-
-module.exports = {  //导出两个对象对应两个方法
-  getYearByTimeStamp,
-  getDateByTimeStamp,
+module.exports = {  //导出方法
+    getBody,
 };
