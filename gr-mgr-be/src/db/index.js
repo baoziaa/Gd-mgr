@@ -1,6 +1,6 @@
 require('./Schemas/User');
-
-const mongoose = require('mongoose')
+require('./Schemas/InviteCode'); // require一个文件就是执行一个文件,执行之后就会注册model
+const mongoose = require('mongoose');
 
 //给哪个数据库
 //哪个集合
