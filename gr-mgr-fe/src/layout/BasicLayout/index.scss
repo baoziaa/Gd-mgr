@@ -1,0 +1,64 @@
+.basic-layout {
+    .gr-header-placeholder {
+        height: 64px;
+        width: 100%;
+    }
+    .gr-header {
+      height: 64px;
+      position: fixed; // 相对于浏览器绝对定位的
+      top: 0; // 被固定在浏览器左上角
+      left: 0;
+      background-color: #fff;
+      box-shadow: 0 2px 8px #f0f1f2; // 阴影
+      display: flex; // 弹性盒子模式,就可以使用下面两个属性了
+      align-items: center; // 在纵轴上所有的内容是垂直居中的
+      justify-content: space-between; // 元素是两端对齐的
+      padding: 0 16px;
+      width: 100%;
+      z-index: 1; //堆叠层级是1,防止被遮住
+      
+      .header-left {
+        display: flex; // 自动进行同一行进行布局
+        align-items: center; // 垂直居中
+        img {
+          height: 50px;
+          margin-right: 16px;
+        }
+        .title {
+          color: rgba(0,0,0,.87);
+          font-size: 18px; //字体大小
+        }
+      }
+
+      .header-right {
+        display: flex;
+        align-items: center;
+        .logout {
+          width: 80px;
+          height: 64px;
+          line-height: 64px; //行高
+          text-align: center;
+          cursor: pointer; //悬停鼠标样式
+          margin-left: 16px;
+          &:hover { //悬停样式
+            background-color: #eee;
+          }
+        }
+      }
+    }
+    .gr-content {
+        display: flex; //自动进行同一行进行布局
+        .sidebar-left {
+            width: 256px;
+            background: #efefef;
+            position: fixed; //定位
+            top: 64px;
+            bottom: 0px;
+        }
+        .content-right {
+            flex: 1; // 把剩余空间都沾满
+            padding: 24px; // 内边距
+            margin-left: 256px; // 左边已经不占位了,所以要空出来
+        }
+    }
+}
