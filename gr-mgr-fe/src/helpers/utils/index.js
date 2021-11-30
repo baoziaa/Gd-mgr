@@ -31,3 +31,26 @@ export const result = (response, autoShowErrorMsg = true) => { // autoShowErrorM
     },
   };
 };
+
+export const clone = (obj) => { //完成一个自身拷贝的方法
+  return JSON.parse(JSON.stringify(obj));
+};
+
+
+// todo 格式化时间戳 并导出
+export const formatTimestamp = (ts) => {
+  // 获取当前时间，防止取到的是字符串，Number转换一下类型
+  const date = new Date(Number(ts));
+
+  // 取到年月份,月是从0开始的所以+1
+  const YYYY = date.getFullYear();
+  const MM = date.getMonth() + 1;
+  const DD = date.getDate();
+
+  // 取到时分秒
+  const hh = date.getHours();
+  const mm = date.getMinutes();
+  const ss = date.getSeconds();
+
+  return `${YYYY}/${MM}/${DD}`;
+};
