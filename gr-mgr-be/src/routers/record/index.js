@@ -52,10 +52,11 @@ router.post('/add', async (ctx) => {
 
 // 获取数据列表接口
 router.get('/list', async (ctx) => {
-  // https://aa.bb.com/user?page=2&size=20&#fdsafds
+  // https://aa.bb.com/user?page=2&size=20&keyword=名称#fdsafds
   // 从前端拿到page页码和size条数
   const {
     page = 1,
+    keyword = '',
   } = ctx.query;
 
   let {
@@ -67,8 +68,14 @@ router.get('/list', async (ctx) => {
   // 20 20
   // (page - 1) ) size
 
+  const query = {};
+
+  if (keyword) {
+    query.name = keyword;
+  }
+
   const list = await Record
-    .find()
+    .find(query)
     // 跳过的条数
     .skip((page - 1) * size)
     // 每页限制显示的条数
@@ -87,6 +94,23 @@ router.get('/list', async (ctx) => {
     },
     code: 1,
     msg: '获取数据列表成功',
+  };
+});
+
+// 删除的接口
+router.delete('/:id', async (ctx) => {
+  const {
+    id,
+  } = ctx.params;
+
+  const delMsg = await Record.deleteOne({
+    _id: id,
+  });
+
+  ctx.body = {
+    data: delMsg,
+    msg: '删除成功',
+    code:1,
   };
 });
 

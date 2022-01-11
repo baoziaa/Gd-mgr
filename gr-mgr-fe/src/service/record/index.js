@@ -16,3 +16,9 @@ export const list = (data) => {
     }, // axios下面get一个传值方法
   );
 } 
+
+export const remove = (id) => {
+  return axios.delete(
+    `http://localhost:3000/record/${id}`,
+  );
+} 

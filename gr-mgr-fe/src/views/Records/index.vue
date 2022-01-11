@@ -7,7 +7,14 @@
 
       <space-between>
         <div class="search">
-          <a-input-search placeholder="根据姓名搜索" enter-button />
+          <a-input-search
+           placeholder="根据姓名搜索"
+           enter-button
+           v-model:value="keyword"
+           @search="onSearch"
+            />
+          <!-- javascript:;防止点击的时候页面会跳转 -->
+          <a v-if="isSearch" href="javascript:;" @click="backAll">返回</a>
         </div>
         <a-button @click="show = true">添加一条</a-button>
       </space-between>
@@ -20,6 +27,10 @@
       >
         <template #graddate="data">
           {{formatTimestamp(data.record.graddate)}}
+        </template>
+
+        <template #actions="arecord">
+          <a href="javascript:;" @click="remove(arecord)">删除</a>
         </template>
       </a-table>
       <space-between style="margin-top: 24px;">

@@ -23,7 +23,7 @@ connect().then(() => {
   // 开启一个 http 服务
   //接受 http 请求 并处理,处理完后响应  3000代表的监听端口,浏览器默认端口80,https默认端口443  例:https://www.imooc.com:443
   app.listen(3000,() => {
-    console.log('启动成功!')
+    console.log('启动成功!');
 });
 });
 /* 

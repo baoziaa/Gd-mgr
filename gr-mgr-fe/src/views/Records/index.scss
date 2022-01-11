@@ -1,3 +1,11 @@
 .search {
     width: 200px;
+    // 左右排布在一行显示
+    display: flex;
+    // 垂直居中
+    align-items: center;
+    a {
+      width: 40px;
+      margin-left: 16px;
+    }
 }

@@ -15,7 +15,7 @@ router.get('/add', async (ctx) => {
     code: uuidv4(),
     user: '',
   });
-
+  
   const saved =  await code.save();
 
   ctx.body = {
