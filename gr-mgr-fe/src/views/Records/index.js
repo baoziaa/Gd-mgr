@@ -1,12 +1,14 @@
 import { defineComponent, ref,onMounted } from 'vue'; // todo defineComponentd代码提示
-import { message } from 'ant-design-vue';
+import { message, Modal} from 'ant-design-vue';
 import { record } from '@/service';
 import { result,formatTimestamp } from '@/helpers/utils'
 import AddOne from './AddOne/index.vue';//引入AddOne,然后再component里进行注册
+import Update from './Update/index.vue';//引入Update,然后再component里进行注册
 
 export default defineComponent({
   components: { // 进行注册
     AddOne,
+    Update,
   },
   setup() {
     const columns = [
@@ -58,8 +60,12 @@ export default defineComponent({
         dataIndex: 'industry',
       },
       {
-        title: '单位所在地',
+        title: '所在地址',
         dataIndex: 'location',
+      },
+      {
+        title: '毕业薪资',
+        dataIndex: 'salary',
       },
       {
         title: '联系电话',
@@ -75,12 +81,14 @@ export default defineComponent({
 
 
     const show = ref(false);
+    const showUpdateModel = ref(false);
     
     const list = ref([]);
     const total = ref(0);
     const curPage = ref(1);
     const keyword = ref('');
     const isSearch = ref(false);
+    const curEditRecord = ref({});
 
     // 获取数据列表
     const getList = async () => {
@@ -126,7 +134,8 @@ export default defineComponent({
       keyword.value = '',
       getList();
       isSearch.value = false;
-    }
+    };
+
 
     // 删除一条数据
     const remove = async ({ text: arecord }) => {
@@ -147,7 +156,27 @@ export default defineComponent({
           // 为了保证数据的完整性,我买选择用getList获取新的数据列表
           getList();
         });
-    }
+    };
+
+
+    const confirmBox = arecord => {
+      Modal.confirm({
+        title: '您确认删除这条信息吗?',
+        onOk: async () => {
+          remove(arecord);
+        }
+      });
+    };
+
+    const update = arecord => {
+      showUpdateModel.value = true;
+      curEditRecord.value = arecord;
+    };
+
+    const updateCurRecord = (newData) => {
+      Object.assign(curEditRecord.value,newData);
+    };
+
 
     return {
       columns,
@@ -161,7 +190,12 @@ export default defineComponent({
       onSearch,
       backAll,
       isSearch,
+      confirmBox,
       remove,
+      showUpdateModel,
+      update,
+      curEditRecord,
+      updateCurRecord,
     };
   },
 });

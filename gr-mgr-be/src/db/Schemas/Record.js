@@ -26,6 +26,8 @@ const RecordSchema = new mongoose.Schema({
     industry: String,
     // 单位所在地
     location: String,
+    // 毕业薪资
+    salary: Number,
     // 联系电话
     tel: String,
 

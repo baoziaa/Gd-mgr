@@ -23,6 +23,7 @@ router.post('/add', async (ctx) => {
     nature,
     industry,
     location,
+    salary,
     tel,
   } = getBody(ctx);
 
@@ -39,10 +40,11 @@ router.post('/add', async (ctx) => {
     nature,
     industry,
     location,
+    salary,
     tel,
   });
   const res = await record.save();
-  console.log(res);
+  // console.log(res);
   ctx.body = {
     data: res,
     code: 1,
@@ -76,6 +78,9 @@ router.get('/list', async (ctx) => {
 
   const list = await Record
     .find(query)
+    .sort({
+      _id: -1,
+    })
     // 跳过的条数
     .skip((page - 1) * size)
     // 每页限制显示的条数
@@ -114,6 +119,66 @@ router.delete('/:id', async (ctx) => {
   };
 });
 
+
+// 修改的接口
+router.post('/update', async (ctx) => {
+  // ...是ES6提供的新的特性,根据场景可以为拓展运算符或叫剩余参数.others里是集合成的一个对象.
+  const {
+    _id,
+    // stuid,
+    // name,
+    // sex,
+    // major,
+    // gclass,
+    // graddate,
+    // grad,
+    // city,
+    // unitname,
+    // nature,
+    // industry,
+    // location,
+    // salary,
+    // tel,
+    ...others
+  } = ctx.request.body;
+
+  // 根据id值进行查找
+  const one = await Record.findOne({
+    _id: _id,
+  }).exec();
+
+  // 没有找到数据的时候
+  if(!one) {
+    ctx.body = {
+      msg: '没有找到数据',
+      code: 0,
+    };
+    return;
+  }
+
+  // 空对象
+  const newQuery = {};
+
+  // 遍历,如果有value值就放在newQuery对象里.
+  Object.entries(others).forEach(([key,value]) => {
+    if (value) {
+      newQuery[key] = value;
+    }
+  });
+
+  // 合并对象,把修改后的(newQuery)合并到查找到的这条记录(one)里面
+  Object.assign(one,newQuery);
+
+  // 数据保存到数据库里
+  const res = await one.save();
+
+  ctx.body = {
+    data: res,
+    code: 1,
+    msg: '保存成功'
+  };
+  
+});
 
 module.exports = router;  //导出这个路由
 

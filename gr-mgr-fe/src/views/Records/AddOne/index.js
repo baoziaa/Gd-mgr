@@ -16,6 +16,7 @@ const defaultFormData = {
   nature: '',
   industry: '',
   location: '',
+  salary: '',
   tel: '',
 }
 

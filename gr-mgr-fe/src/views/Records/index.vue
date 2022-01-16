@@ -24,13 +24,16 @@
       :columns="columns"
       :data-source="list"
       :pagination = "false"
+      :scroll="{ x: 'calc(700px + 80%)', y: 340 }"
       >
         <template #graddate="data">
           {{formatTimestamp(data.record.graddate)}}
         </template>
 
         <template #actions="arecord">
-          <a href="javascript:;" @click="remove(arecord)">删除</a>
+          <a href="javascript:;" @click="update(arecord)">编辑</a>
+          &nbsp;
+          <a href="javascript:;" @click="confirmBox(arecord)">删除</a>
         </template>
       </a-table>
       <space-between style="margin-top: 24px;">
@@ -46,6 +49,11 @@
 
     <add-one
       v-model:show="show"
+    />
+    <update
+      v-model:show="showUpdateModel"
+      :record = "curEditRecord"
+      @update="updateCurRecord"
     />
   </div>
 </template>
