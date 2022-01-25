@@ -3,4 +3,5 @@
 // 把auth文件导出的所有内容聚合到一个对象里这个对象就叫auth
 export * as auth from './auth';
 export * as record from './record';
+export * as user from './user';
 

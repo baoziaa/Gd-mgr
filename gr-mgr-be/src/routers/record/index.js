@@ -4,6 +4,14 @@ const { getBody } = require('../../helpers/utils');
 
 const Record = mongoose.model('Record');//对应的Usermodel
 
+/* const findRecordOne = async (id) => {
+  // console.log(id);
+  const one = await Record.findOne({
+  _id: id,
+  }).exec();
+  return one;
+}; */
+
 const router = new Router({ //实例化
   prefix: '/record',  //路由前缀
 });
@@ -125,6 +133,7 @@ router.post('/update', async (ctx) => {
   // ...是ES6提供的新的特性,根据场景可以为拓展运算符或叫剩余参数.others里是集合成的一个对象.
   const {
     _id,
+    id,
     // stuid,
     // name,
     // sex,
@@ -144,7 +153,7 @@ router.post('/update', async (ctx) => {
 
   // 根据id值进行查找
   const one = await Record.findOne({
-    _id: _id,
+    _id: _id || id,
   }).exec();
 
   // 没有找到数据的时候
@@ -180,5 +189,34 @@ router.post('/update', async (ctx) => {
   
 });
 
+// 获取数据信息详情接口
+  router.get('/detail/:id', async (ctx) => {
+    const {
+      id,
+    } = ctx.params;
+
+  console.log(id);
+
+  const one = await Record.findOne({
+    _id: id,
+    }).exec();
+
+    console.log(one);
+  // 没有找到数据的时候
+  if(!one) {
+    ctx.body = {
+      msg: '没有找到数据',
+      code: 0,
+    };
+    return;
+  }
+
+  ctx.body = {
+    msg: '查询成功',
+    data: one,
+    code: 1,
+  }
+  });
+  
 module.exports = router;  //导出这个路由
 

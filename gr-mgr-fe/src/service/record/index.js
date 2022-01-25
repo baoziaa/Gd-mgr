@@ -32,4 +32,11 @@ export const update = (data = {}) => {
     `http://localhost:3000/record/update`,
     data,
   );
-} 
+};
+
+// 详情
+export const detail = (id) => {
+  return axios.get(
+    `http://localhost:3000/record/detail/${id}`,
+  );
+};

@@ -24,7 +24,8 @@
       :columns="columns"
       :data-source="list"
       :pagination = "false"
-      :scroll="{ x: 'calc(700px + 80%)', y: 340 }"
+      :scroll="{ x: 'calc(700px + 81%)', y: 340 }"
+      bordered
       >
         <template #graddate="data">
           {{formatTimestamp(data.record.graddate)}}
@@ -34,9 +35,11 @@
           <a href="javascript:;" @click="update(arecord)">编辑</a>
           &nbsp;
           <a href="javascript:;" @click="confirmBox(arecord)">删除</a>
+          <br />
+          <a href="javascript:;" @click="toDetail(arecord)">详情</a>
         </template>
       </a-table>
-      <space-between style="margin-top: 24px;">
+      <space-between style="margin-top: 24px;" v-if="!isSearch">
         <div />
         <a-pagination
           v-model:current="curPage"

@@ -1,7 +1,8 @@
-import { defineComponent, ref,onMounted } from 'vue'; // todo defineComponentd代码提示
+import { defineComponent, ref, onMounted } from 'vue'; // todo defineComponentd代码提示
 import { message, Modal} from 'ant-design-vue';
 import { record } from '@/service';
-import { result,formatTimestamp } from '@/helpers/utils'
+import {useRouter} from 'vue-router'; //操作路由的一些方法,例前进页/后退页/跳到某一页
+import { result, formatTimestamp } from '@/helpers/utils'
 import AddOne from './AddOne/index.vue';//引入AddOne,然后再component里进行注册
 import Update from './Update/index.vue';//引入Update,然后再component里进行注册
 
@@ -11,6 +12,8 @@ export default defineComponent({
     Update,
   },
   setup() {
+    const router = useRouter();
+
     const columns = [
       {
         title: '学号',
@@ -168,15 +171,22 @@ export default defineComponent({
       });
     };
 
+    // 显示更新弹框
     const update = arecord => {
       showUpdateModel.value = true;
       curEditRecord.value = arecord;
     };
 
+    // 更新列表的某一行数据
     const updateCurRecord = (newData) => {
       Object.assign(curEditRecord.value,newData);
     };
 
+    // 进入详情页
+    const toDetail = arecord => {
+      // console.log(arecord.record._id);
+      router.push(`/records/${arecord.record._id}`);
+    };
 
     return {
       columns,
@@ -191,11 +201,11 @@ export default defineComponent({
       backAll,
       isSearch,
       confirmBox,
-      remove,
       showUpdateModel,
       update,
       curEditRecord,
       updateCurRecord,
+      toDetail,
     };
   },
 });

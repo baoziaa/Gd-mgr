@@ -1,0 +1,24 @@
+.base-info {
+  .items {
+    display: flex;
+    &:last-child {
+      margin-bottom: 0; //最后一行的元素
+    }
+
+    .item {
+      flex: 1; //一行均等分
+      display: flex;
+      margin-bottom: 16px;
+
+      .title {
+        font-weight: 700; //字体加粗
+        color: rgba(0, 0, 0, .7);
+        min-width: 80px; //最小宽度
+      }
+      
+    }
+  }
+}
+.log {
+  margin-top: 24px;
+}

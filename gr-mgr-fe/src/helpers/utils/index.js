@@ -37,6 +37,12 @@ export const clone = (obj) => { //完成一个自身拷贝的方法
 };
 
 
+const timestampPadStart = (str) => {
+  str = String(str);
+  
+  return str.padStart(2,'0');
+};
+
 // todo 格式化时间戳 并导出
 export const formatTimestamp = (ts) => {
   // 获取当前时间，防止取到的是字符串，Number转换一下类型
@@ -44,13 +50,30 @@ export const formatTimestamp = (ts) => {
 
   // 取到年月份,月是从0开始的所以+1
   const YYYY = date.getFullYear();
-  const MM = date.getMonth() + 1;
-  const DD = date.getDate();
+  const MM = timestampPadStart(date.getMonth() + 1);
+  const DD = timestampPadStart(date.getDate());
 
   // 取到时分秒
-  const hh = date.getHours();
-  const mm = date.getMinutes();
-  const ss = date.getSeconds();
+  const hh = timestampPadStart(date.getHours());
+  const mm = timestampPadStart(date.getMinutes());
+  const ss = timestampPadStart(date.getSeconds());
 
   return `${YYYY}/${MM}/${DD}`;
+};
+
+export const formatTimestampDetail = (ts) => {
+  // 获取当前时间，防止取到的是字符串，Number转换一下类型
+  const date = new Date(Number(ts));
+
+  // 取到年月份,月是从0开始的所以+1
+  const YYYY = date.getFullYear();
+  const MM = timestampPadStart(date.getMonth() + 1);
+  const DD = timestampPadStart(date.getDate());
+
+  // 取到时分秒
+  const hh = timestampPadStart(date.getHours());
+  const mm = timestampPadStart(date.getMinutes());
+  const ss = timestampPadStart(date.getSeconds());
+
+  return `${YYYY}/${MM}/${DD} ${hh}:${mm}:${ss}`;
 };
