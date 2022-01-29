@@ -195,13 +195,13 @@ router.post('/update', async (ctx) => {
       id,
     } = ctx.params;
 
-  console.log(id);
+  // console.log(id);
 
   const one = await Record.findOne({
     _id: id,
     }).exec();
 
-    console.log(one);
+    // console.log(one);
   // 没有找到数据的时候
   if(!one) {
     ctx.body = {

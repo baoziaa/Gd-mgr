@@ -6,12 +6,13 @@ const config = require('../../project.config');
 // const { getBody } = require('../../helpers/utils');
 
 const User = mongoose.model('User');
+const Character = mongoose.model('Character');
 
 const router = new Router({ //实例化
   prefix: '/user',  //路由前缀
 });
 
-
+// 获取用户列表
 router.get('/list', async (ctx) => {
   let{
     page,
@@ -51,35 +52,52 @@ router.get('/list', async (ctx) => {
     },
     code: 1,
   };
-
-  router.delete('/:id', async (ctx) => {
-    const {
-      id,
-    } = ctx.params;
-
-    const delMsg = await User.deleteOne({
-      _id: id,
-    });
-
-    ctx.body = {
-      data: delMsg,
-      code: 1,
-      msg: '删除成功'
-    };
-  });
 });
 
+// 删除用户
+router.delete('/:id', async (ctx) => {
+  const {
+    id,
+  } = ctx.params;
+
+  const delMsg = await User.deleteOne({
+    _id: id,
+  });
+
+  ctx.body = {
+    data: delMsg,
+    code: 1,
+    msg: '删除成功'
+  };
+});
+
+// 添加用户
 router.post('/add', async (ctx) => {
   const {
     account,
     password,
+    character,
   } = ctx.request.body;
 
-  
+  const char = Character.findOne({
+    _id: character,
+  });
+
+  if (!char) {
+    ctx.body = {
+      msg: '出错啦',
+      code: 0,
+    };
+
+    return;
+  }
+
   const user = new User({
     account,
     password: password || 123123, //如果密码为空,默认为123123
+    character,
   });
+
 
   const res = await user.save();
 
@@ -91,6 +109,7 @@ router.post('/add', async (ctx) => {
 
 });
 
+// 重置密码
 router.post('/reset/password', async (ctx) => {
   const {
     id,
@@ -121,6 +140,49 @@ router.post('/reset/password', async (ctx) => {
       _id: res._id,
     }
   };
+  
+});
+
+router.post('/update/character', async (ctx) => {
+  const {
+    character,
+    userId,
+  } = ctx.request.body;
+
+  const char = await Character.findOne({
+    _id: character,
+  });
+
+  console.log('1'+char+character);
+  if (!char) {
+    ctx.body = {
+      msg: '出错啦',
+      code: 0,
+    };
+
+    return;
+  }
+
+  const user = await User.findOne({
+    _id: userId,
+  });
+
+  if (!user) {
+    ctx.body = {
+      msg: '出错啦',
+      code: 0,
+    };
+  }
+
+  user.character = character;
+
+  const res = user.save();
+
+  ctx.body = {
+    data: res,
+    msg: '修改成功',
+    code: 1,
+  }
   
 });
 

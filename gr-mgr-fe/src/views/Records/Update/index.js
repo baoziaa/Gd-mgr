@@ -12,7 +12,7 @@ export default defineComponent({
   },
   setup(props,context) {
     // console.log(props);
-    const editForm = reactive({
+    const editForm = reactive(Object.assign({
       stuid: '',
       name: '',
       sex: '',
@@ -27,7 +27,7 @@ export default defineComponent({
       location: '',
       salary: '',
       tel: '',
-    });
+    },props.record));
 
     const close = () => {
       context.emit('update:show',false);

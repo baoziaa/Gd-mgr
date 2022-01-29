@@ -1,8 +1,11 @@
-import { defineComponent, ref, onMounted } from 'vue';
+import { defineComponent, ref, onMounted, reactive } from 'vue';
 import { user } from '@/service';
 import { result, formatTimestampDetail } from '@/helpers/utils';
 import { message, Modal } from 'ant-design-vue';
 import AddOne from './AddOne/index.vue';
+import { getCharacterInfoById } from '@/helpers/character';
+import { EditOutlined } from '@ant-design/icons-vue';
+import store from '@/store';
 
 const columns = [
   {
@@ -13,6 +16,12 @@ const columns = [
     title: '创建日期',
     slots: {
       customRender: 'createdAt'
+    },
+  },
+  {
+    title: '角色',
+    slots: {
+      customRender: 'character'
     },
   },
   {
@@ -28,6 +37,7 @@ const columns = [
 export default defineComponent({
   components: {
     AddOne,
+    EditOutlined,
   },
   setup() {
     // 存放用户信息
@@ -42,6 +52,19 @@ export default defineComponent({
     const keyword = ref('');
     // 搜索状态
     const isSearch = ref(false);
+    // 角色弹框的显示隐藏状态
+    const showEditCharacterModal = ref(false);
+
+
+    const editForm = reactive({
+      character: '',
+      current: {},
+    });
+
+    // 拿到角色列表
+    const { characterInfo } = store.state;
+    // 添加角色选择框默认普通成员_学生角色
+    editForm.character = characterInfo[1]._id;
 
     const getUser = async () => {
       const res = await user.list(curPage.value, 3, keyword.value); //默认size先写死3条
@@ -103,6 +126,26 @@ export default defineComponent({
       keyword.value = '';
     };
 
+    const onEdit = (record) => {
+      editForm.current = record;
+      editForm.character = record.character;
+
+      showEditCharacterModal.value = true;
+    };
+    
+    const updateCharacter = async () => {
+      const res = await user.editCharacter(editForm.character, editForm.current._id);
+
+      result(res)
+        .success(({msg}) => {
+          message.success(msg);
+          // 修改之后关闭弹框
+          showEditCharacterModal.value = false;
+          // 更改模板对应的值
+          editForm.current.character = editForm.character;
+        });
+    };
+
     return {
       list,
       total,
@@ -119,6 +162,13 @@ export default defineComponent({
       onSearch,
       backAll,
       isSearch,
+      onEdit,
+
+      getCharacterInfoById,
+      showEditCharacterModal,
+      editForm,
+      characterInfo,
+      updateCharacter,
     };
   },
   

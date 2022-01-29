@@ -4,4 +4,5 @@
 export * as auth from './auth';
 export * as record from './record';
 export * as user from './user';
+export * as character from './character';
 

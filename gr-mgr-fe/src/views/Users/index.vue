@@ -33,6 +33,11 @@
             {{formatTimestampDetail(record.meta.createdAt)}}
         </template>
 
+        <template #character="{ record }">
+            <a href="javascript:;" @click="onEdit(record)"><EditOutlined /></a>
+            {{ getCharacterInfoById(record.character).title }}
+        </template>
+
         <template #actions="{ record }">
            <a href="javascript:;" @click="resetPassword(record)">重置密码</a>
            &nbsp;
@@ -56,6 +61,25 @@
       v-model:show="showAddModel"
       @getList="getUser"
     />
+
+    <a-modal
+      v-model:visible="showEditCharacterModal"
+      title="修改角色"
+      @ok="updateCharacter"
+    >
+      <a-select
+        v-model:value="editForm.character"
+        style="width: 140px"
+      >
+        <a-select-option
+          v-for="item in characterInfo"
+          :key="item._id"
+          :value="item._id"
+        >
+          {{ item.title }}
+        </a-select-option>
+      </a-select>
+    </a-modal>
   </div>
 </template>
 
