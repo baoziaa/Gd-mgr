@@ -42,3 +42,8 @@ export const editCharacter = (characterId, userId) => {
     userId: userId,
   });
 };
+
+// 拿取用户的数据
+export const info = () => {
+  return axios.get('http://localhost:3000/user/info');
+};

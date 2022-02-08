@@ -2,6 +2,9 @@ require('./Schemas/User');
 require('./Schemas/InviteCode'); // require一个文件就是执行一个文件,执行之后就会注册model
 require('./Schemas/Record');
 require('./Schemas/Character');
+require('./Schemas/Log');
+require('./Schemas/LogResponse');
+require('./Schemas/ForgetPassword');
 
 
 const mongoose = require('mongoose');

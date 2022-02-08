@@ -34,7 +34,7 @@
         <template #actions="arecord">
           <a href="javascript:;" @click="update(arecord)">编辑</a>
           &nbsp;
-          <a href="javascript:;" @click="confirmBox(arecord)">删除</a>
+          <a href="javascript:;" v-only-admin @click="confirmBox(arecord)">删除</a>
           <br />
           <a href="javascript:;" @click="toDetail(arecord)">详情</a>
         </template>

@@ -30,7 +30,7 @@
           </a-input-password>
           </div>
           <div class="item">
-            <a href="">忘记密码</a>
+            <a href="javascript:;" @click="forgetPassword">忘记密码</a>
           </div>
           <div class="item">
             <a-button size="large" type="primary" @click="login">
@@ -86,7 +86,7 @@
   </div>
 </template>
 
-<script src="./index.js"></script>
+<script src="./index.jsx"></script>
 
 <style lang="scss" scpoed>
   @import './index.scss';

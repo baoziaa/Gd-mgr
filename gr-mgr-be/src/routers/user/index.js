@@ -2,6 +2,7 @@ const Router = require('@koa/router');  //引入@koa/router
 const mongoose = require('mongoose'); //引入mongoose,拿到对应的Usermodel
 const { v4: uuidv4 } = require('uuid');
 const config = require('../../project.config');
+const { verify, getToken } = require('../../helpers/token');
 
 // const { getBody } = require('../../helpers/utils');
 
@@ -143,6 +144,7 @@ router.post('/reset/password', async (ctx) => {
   
 });
 
+// 修改用户角色
 router.post('/update/character', async (ctx) => {
   const {
     character,
@@ -185,6 +187,18 @@ router.post('/update/character', async (ctx) => {
   }
   
 });
+
+// 根据token换取用户的信息,解密一下token
+router.get('/info', async (ctx) => {
+  // Authorization Bearer %^&fjsalkjfajfasj
+  ctx.body = {
+    data: await verify(getToken(ctx)),
+    code: 1,
+    msg: '获取成功',
+  };
+
+});
+
 
 module.exports = router;  //导出这个路由
 

@@ -4,6 +4,8 @@ const koaBody = require('koa-body');
 const Body = require('koa-body');
 const { connect } = require('./db');
 const registerRoutes = require('./routers');//引入routers里面的index.js,index.js可以省略,它会自己去找(routers文件下的index.js导出,我就可以引入)
+const { middleWare: koaJwtMiddleware, catchTokenError } = require('./helpers/token');
+const { logMiddleware } = require('./helpers/log');
 const cors = require('@koa/cors');  //解决跨域问题
 
 // const Router = require('@koa/router');
@@ -18,6 +20,12 @@ const app = new Koa();
 connect().then(() => {
   app.use(cors());  //处理跨域的一个中间件
   app.use(koaBody()); //它是一个函数,要放在registerRoutes之前,因为每个router触发的时候都要处理好Body请求体上面的信息(如上传文件大小,支不支持上传多个文件)
+  
+  app.use(catchTokenError);
+  
+  koaJwtMiddleware(app);
+
+  app.use(logMiddleware);
   
   registerRoutes(app);  //调用一下这个函数
   // 开启一个 http 服务

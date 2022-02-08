@@ -2,6 +2,9 @@
 
 // 在views下面auth下面的index.js去用
 import axios from 'axios';
+import { getToken } from '@/helpers/token';
+// 每次请求都会带上Authorization
+axios.defaults.headers['Authorization'] = `Bearer ${getToken()}`;
 
 // 添加一条数据
 export const add = (form) => axios.post(

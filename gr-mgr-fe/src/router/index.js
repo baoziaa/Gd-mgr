@@ -27,6 +27,16 @@ const routes = [
         name: 'User',
         component: () => import(/* webpackChunkName: "User" */ '../views/Users/index.vue'),
       },
+      {
+        path: '/log',
+        name: 'Log',
+        component: () => import(/* webpackChunkName: "Log" */ '../views/Log/index.vue'),
+      },
+      {
+        path: '/reset/password',
+        name: 'ResetPassword',
+        component: () => import(/* webpackChunkName: "ResetPassword" */ '../views/ResetPassword/index.vue'),
+      },
     ],
   },
 ];
@@ -38,12 +48,20 @@ const router = createRouter({
 
 
 
+// beforeEach页面进入之前
 router.beforeEach(async (to, from, next) => {
+  
   if (!store.state.characterInfo.length) {
-
     // store.dispatch调用store里面的action
-    store.dispatch('getCharacterInfo');
+    await store.dispatch('getCharacterInfo'); //拿到用户角色的信息
   }
+
+  // 没有用户信息的时候去拿用户信息
+  if (!store.state.userInfo.account) {
+    // store.dispatch调用store里面的action
+    await store.dispatch('getUserInfo');
+  }
+
   
   next();
 })

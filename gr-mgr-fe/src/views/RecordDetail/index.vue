@@ -4,9 +4,9 @@
       <space-between>
         <h2>姓名:&nbsp;&nbsp;{{detailInfo.name}}</h2>
         <div>
-          <a-button size="small" type="primary" @click="showUpdateModel=true">编辑</a-button>
+          <a-button size="small" type="primary" v-only-admin @click="showUpdateModel=true">编辑</a-button>
           &nbsp;
-          <a-button size="small" type="danger" @click="confirmBox">删除</a-button>
+          <a-button size="small" type="danger" v-only-admin @click="confirmBox">删除</a-button>
         </div>
       </space-between>
 

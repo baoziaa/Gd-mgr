@@ -3,6 +3,8 @@ const inviteCode = require('./Invite-code'); //引入Incite-code
 const record = require('./record'); //引入routers下面的record下面的index.js,index.js文件可以省略
 const user = require('./user')
 const character = require('./character')
+const log = require('./log')
+const forgetPassword = require('./forget-password')
 
 module.exports = (app) => { //导出
   //注册中间件
@@ -11,4 +13,6 @@ module.exports = (app) => { //导出
   app.use(record.routes());
   app.use(user.routes());
   app.use(character.routes());
+  app.use(log.routes());
+  app.use(forgetPassword.routes());
 };

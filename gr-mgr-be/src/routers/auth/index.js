@@ -2,16 +2,17 @@ const Router = require('@koa/router');  //引入@koa/router
 const mongoose = require('mongoose'); //引入mongoose,拿到对应的Usermodel
 const { getBody } = require('../../helpers/utils');
 const jwt = require('jsonwebtoken');
-const sign = require('jsonwebtoken/sign');
+const config = require('../../project.config'); //引入配置项,config.JWT_SECRET密钥
 
 const User = mongoose.model('User');//对应的Usermodel
 const InviteCode = mongoose.model('InviteCode');//对应的Usermodel
 
-const authRouter = new Router({ //实例化
+const router = new Router({ //实例化
   prefix: '/auth',  //通过auth前缀去区分这个router这个业务逻辑是属于哪一块的
 });
 
-authRouter.post('/register', async (ctx) => { //如果是get请求,/auth/register的路径就会响应里面的信息,ctx是context参数的缩写
+// 注册接口
+router.post('/register', async (ctx) => { //如果是get请求,/auth/register的路径就会响应里面的信息,ctx是context参数的缩写
 //   console.log(ctx.request.body); 取到值了
   const {
       account,
@@ -83,7 +84,9 @@ authRouter.post('/register', async (ctx) => { //如果是get请求,/auth/registe
     data: res,
   };
 });
-authRouter.post('/login', async (ctx) => { //如果是get请求,/auth/register的路径就会响应里面的信息,ctx是context参数的缩写
+
+// 登录接口
+router.post('/login', async (ctx) => { //如果是get请求,/auth/register的路径就会响应里面的信息,ctx是context参数的缩写
     const {
         account,
         password,
@@ -132,7 +135,7 @@ authRouter.post('/login', async (ctx) => { //如果是get请求,/auth/register�
             msg: '登入成功', 
             data: {
                 user,   //直接把user返回
-                token: jwt.sign(user, 'baozi'),  //引入jwt,用sign方法,第一个是传入的参数加密内容,第二个参数是密钥
+                token: jwt.sign(user, config.JWT_SECRET),  //引入jwt,用sign方法,第一个是传入的参数加密内容,第二个参数是密钥
             },
         };
         return;
@@ -146,5 +149,6 @@ authRouter.post('/login', async (ctx) => { //如果是get请求,/auth/register�
 
 });
 
-module.exports = authRouter;  //导出这个路由
+
+module.exports = router;  //导出这个路由
 
