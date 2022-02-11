@@ -5,6 +5,10 @@ const LOG_MAP = [
   ['/record/detail', '获取详情页信息'],
   ['/user/list', '获取用户列表'],
   ['/record/list', '获取数据列表'],
+  ['/invite/list', '获取邀请码列表'],
+  ['/auth/login', '登入成功'],
+  ['/forget-password/add', '添加忘记密码'],
+  ['/forget-password/list', '获取忘记密码列表'],
 ];
 
 // 获取日志信息路径

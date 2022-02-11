@@ -19,8 +19,13 @@ export default [
     onlyAdmin: false,
     children: [
       {
-        title: '重置密码列表',
+        title: '重置密码管理',
         url: '/reset/password',
+        onlyAdmin: true,
+      },
+      {
+        title: '邀请码管理',
+        url: '/invite-code',
         onlyAdmin: true,
       },
     ],

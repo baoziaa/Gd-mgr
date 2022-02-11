@@ -110,7 +110,6 @@ router.post('/update/status', async (ctx) => {
     _id: id,
   });
   
-  console.log(one,'11111111');
 
 
   if (!one) {
