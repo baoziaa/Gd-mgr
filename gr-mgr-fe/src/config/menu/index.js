@@ -5,6 +5,16 @@ export default [
     onlyAdmin: false,
   },
   {
+    title: '数据展示',
+    url: '/data-display',
+    onlyAdmin: true,
+  },
+  {
+    title: '数据分析',
+    url: '/data-analysis',
+    onlyAdmin: true,
+  },
+  {
     title: '角色管理',
     url: '/user',
     onlyAdmin: true,
@@ -26,6 +36,11 @@ export default [
       {
         title: '邀请码管理',
         url: '/invite-code',
+        onlyAdmin: true,
+      },
+      {
+        title: '去向分类管理',
+        url: '/destination-classifiy',
         onlyAdmin: true,
       },
     ],

@@ -5,6 +5,8 @@ const user = require('./user')
 const character = require('./character')
 const log = require('./log')
 const forgetPassword = require('./forget-password')
+const DestinationClassifiy = require('./destination-classifiy')
+
 
 module.exports = (app) => { //导出
   //注册中间件
@@ -15,4 +17,5 @@ module.exports = (app) => { //导出
   app.use(character.routes());
   app.use(log.routes());
   app.use(forgetPassword.routes());
+  app.use(DestinationClassifiy.routes());
 };

@@ -42,6 +42,21 @@ const routes = [
         name: 'InviteCode',
         component: () => import(/* webpackChunkName: "InviteCode" */ '../views/InviteCode/index.vue'),
       },
+      {
+        path: '/destination-classifiy',
+        name: 'DestinationClassifiy',
+        component: () => import(/* webpackChunkName: "DestinationClassifiy" */ '../views/DestinationClassifiy/index.vue'),
+      },
+      {
+        path: '/data-display',
+        name: 'DataDisplay',
+        component: () => import(/* webpackChunkName: "DataDisplay" */ '../views/DataDisplay/index.vue'),
+      },
+      {
+        path: '/data-analysis',
+        name: 'DataAnalysis',
+        component: () => import(/* webpackChunkName: "DataAnalysis" */ '../views/DataAnalysis/index.vue'),
+      },
     ],
   },
 ];
