@@ -21,7 +21,9 @@
           :pagination="false"
         >
         <template #actions="{ record }">
-          <a-button size="small" type="danger" @click="remove(record)">删除</a-button>
+          <a-button size="small" ghost type="primary" @click="updateTitle(record)">修改</a-button>
+          &nbsp;
+          <a-button size="small" type="danger" @click="confirmBox(record)">删除</a-button>
         </template>
         
         </a-table>
@@ -35,4 +37,4 @@
   </div>
 </template>
 
-<script src="./index.js"></script>
+<script src="./index.jsx"></script>

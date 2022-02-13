@@ -18,3 +18,12 @@ export const list = () => {
 export const remove = (id) => {
   return axios.delete(`http://localhost:3000/destination-classifiy/${id}`);
 };
+
+
+// 修改分类
+export const updateTitle = (id, title) => {
+  return axios.post('http://localhost:3000/destination-classifiy/update/title',{
+    id,
+    title,
+  });
+};

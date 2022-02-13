@@ -1,7 +1,7 @@
 import { defineComponent, onMounted, ref } from 'vue';
 import { DestinationClassifiy } from '@/service';
 import { result } from '@/helpers/utils';
-import { message } from 'ant-design-vue';
+import { message, Modal, Input } from 'ant-design-vue';
 
 const columns = [
   {
@@ -59,13 +59,47 @@ export default defineComponent({
         });
     };
 
+    const confirmBox = record => {
+      Modal.confirm({
+        title: '您确认删除这条分类信息吗?',
+        onOk: () => {
+          remove(record);
+        }
+      });
+    };
+
+    const updateTitle = async ({ _id }) => {
+      Modal.confirm({
+        title: "请输入新的去向分类名称",
+        content: (
+          <div>
+            <Input class="__destination_classifiy_title" />
+          </div>
+        ),
+        onOk: async () => {
+          // 取到Input框的el值
+          const title = document.querySelector(".__destination_classifiy_title");
+
+          const res = await DestinationClassifiy.updateTitle(_id, title);
+
+          result(res)
+            .success(({ msg }) => {
+              message.success(msg);
+              getList();
+            });
+
+        }
+      });
+    };
+
     return {
       add,
 
       list,
       title,
       columns,
-      remove,
+      confirmBox,
+      updateTitle
     }
     
   },

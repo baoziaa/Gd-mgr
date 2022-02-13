@@ -39,6 +39,15 @@ router.post('/add', async (ctx) => {
 
     return;
   };
+
+  if (!title) {
+    ctx.body = {
+      msg: '内容为空',
+      code: 0,
+    };
+
+    return;
+  };
   
   const destinationClassifiy = new DestinationClassifiy({
     title,
@@ -71,14 +80,15 @@ router.delete('/:id', async (ctx) => {
 
 });
 
-router.get('/update/title', async (ctx) => {
+router.post('/update/title', async (ctx) => {
   const {
     id,
     title,
   } = ctx.request.body;
 
+
   const one = await DestinationClassifiy.findOne({
-    _id, id,
+    _id: id,
   });
 
   if (!one) {
@@ -90,7 +100,8 @@ router.get('/update/title', async (ctx) => {
     return;
   }
 
-  one.title = title;
+
+  one.title = title._value;
 
   const res = await one.save();
 
