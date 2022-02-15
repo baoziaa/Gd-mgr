@@ -31,8 +31,21 @@
         <a-form-item label="毕业日期">
           <a-date-picker v-model:value="addForm.graddate" />
         </a-form-item>
-        <a-form-item label="毕业去向">
+        <!-- <a-form-item label="毕业去向">
           <a-input v-model:value="addForm.grad" />
+        </a-form-item> -->
+        <a-form-item label="毕业去向">
+          <a-select
+            v-model:value="addForm.grad"
+            style="width: 120px"
+          >
+            <a-select-option
+              v-for="item in store.destinationClassifiy"
+              :key="item._id"
+              :value="item._id">
+              {{ item.title }}
+            </a-select-option>
+          </a-select>
         </a-form-item>
         <a-form-item label="去向城市">
           <a-input v-model:value="addForm.city" />

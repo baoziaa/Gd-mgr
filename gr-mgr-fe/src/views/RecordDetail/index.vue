@@ -38,7 +38,7 @@
           </div>
           <div class="item">
             <div class="title">毕业去向</div>
-            <div class="content">{{detailInfo.grad}}</div>
+            <div class="content">{{getDestinationClassifiyTitleById(detailInfo.grad)}}</div>
           </div>
         </div>
         <div class="items">

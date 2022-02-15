@@ -76,12 +76,21 @@ router.beforeEach(async (to, from, next) => {
     await store.dispatch('getCharacterInfo'); //拿到用户角色的信息
   }
 
+  const reqArr = [];
+
   // 没有用户信息的时候去拿用户信息
   if (!store.state.userInfo.account) {
     // store.dispatch调用store里面的action
-    await store.dispatch('getUserInfo');
+    // await store.dispatch('getUserInfo');
+    reqArr.push(store.dispatch('getUserInfo'));
   }
 
+  if (!store.state.destinationClassifiy.length) {
+    // store.dispatch调用store里面的action
+    reqArr.push(store.dispatch('getDestinationClassifiy'));
+  }
+
+  await Promise.all(reqArr);
   
   next();
 })

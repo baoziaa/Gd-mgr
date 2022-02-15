@@ -16,7 +16,9 @@
           <!-- javascript:;防止点击的时候页面会跳转 -->
           <a v-if="isSearch" href="javascript:;" @click="backAll">返回</a>
         </div>
-        <a-button @click="show = true">添加一条</a-button>
+        <a-button
+          @click="show = true"
+        >添加一条</a-button>
       </space-between>
 
       <a-divider />
@@ -27,6 +29,10 @@
       :scroll="{ x: 'calc(700px + 81%)', y: 340 }"
       bordered
       >
+        <template #classify="{ record }">
+          {{ getDestinationClassifiyTitleById(record.grad) }}
+        </template>
+
         <template #graddate="data">
           {{formatTimestamp(data.record.graddate)}}
         </template>
@@ -52,11 +58,14 @@
 
     <add-one
       v-model:show="show"
+      :classifyList="DestinationClassifiyList"
+      @getList="getList"
     />
     <update
       v-model:show="showUpdateModel"
       :record = "curEditRecord"
       @update="updateCurRecord"
+      @getList="getList"
     />
   </div>
 </template>

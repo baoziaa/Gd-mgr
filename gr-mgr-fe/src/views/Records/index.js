@@ -1,10 +1,11 @@
 import { defineComponent, ref, onMounted } from 'vue'; // todo defineComponentd代码提示
 import { message, Modal} from 'ant-design-vue';
-import { record } from '@/service';
+import { record, DestinationClassifiy } from '@/service';
 import {useRouter} from 'vue-router'; //操作路由的一些方法,例前进页/后退页/跳到某一页
 import { result, formatTimestamp } from '@/helpers/utils'
 import AddOne from './AddOne/index.vue';//引入AddOne,然后再component里进行注册
 import Update from './Update/index.vue';//引入Update,然后再component里进行注册
+import { getDestinationClassifiyTitleById } from '@/helpers/destination-classifiy'; //根据Id判断分类名称
 
 export default defineComponent({
   components: { // 进行注册
@@ -44,7 +45,9 @@ export default defineComponent({
       },
       {
         title: '毕业去向',
-        dataIndex: 'grad',
+        slots: {
+          customRender: 'classify',
+        },
       },
       {
         title: '去向城市',
@@ -84,14 +87,41 @@ export default defineComponent({
 
 
     const show = ref(false);
+    // 设置更新弹框的默认关闭
     const showUpdateModel = ref(false);
     
+    // 列表
     const list = ref([]);
+    // 总数
     const total = ref(0);
+    // 分页
     const curPage = ref(1);
+    // 搜索框的key值
     const keyword = ref('');
+    // 是否为搜索状态
     const isSearch = ref(false);
+    // 更新的编辑框
     const curEditRecord = ref({});
+    // 去向分类列表
+    // const DestinationClassifiyList = ref([]);
+    // 加载样式
+    // const classifiyLoading = ref(true);
+
+
+    // 获取分类 
+/*     const getDestinationClassifiy = async () => {
+      classifiyLoading.value = true;
+      const res = await DestinationClassifiy.list();
+      classifiyLoading.value = false;
+
+
+
+      result(res)
+        .success(({ data }) => {
+          DestinationClassifiyList.value = data;
+        });
+
+    }; */
 
     // 获取数据列表
     const getList = async () => {
@@ -115,6 +145,7 @@ export default defineComponent({
     };
 
     onMounted(async () => {
+      // await getDestinationClassifiy();
       getList();
     });
 
@@ -206,6 +237,9 @@ export default defineComponent({
       curEditRecord,
       updateCurRecord,
       toDetail,
+      getList,
+      getDestinationClassifiyTitleById,
+      // DestinationClassifiyList,
     };
   },
 });

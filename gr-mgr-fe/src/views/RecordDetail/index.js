@@ -5,6 +5,7 @@ import { record } from '@/service';
 import { message, Modal } from 'ant-design-vue';
 import { DeleteOutlined, FormOutlined } from '@ant-design/icons-vue';
 import Update from '@/views/Records/Update/index.vue';
+import { getDestinationClassifiyTitleById } from '@/helpers/destination-classifiy'; //根据Id判断分类名称
 
 
 export default defineComponent({
@@ -84,6 +85,7 @@ export default defineComponent({
       update,
       logFilter,
       curLogType,
+      getDestinationClassifiyTitleById,
     };
 
   },
