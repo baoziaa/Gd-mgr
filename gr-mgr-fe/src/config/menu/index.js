@@ -26,7 +26,7 @@ export default [
   },
   {
     title: '杂项管理',
-    onlyAdmin: false,
+    onlyAdmin: true,
     children: [
       {
         title: '重置密码管理',
@@ -44,5 +44,10 @@ export default [
         onlyAdmin: true,
       },
     ],
+  },
+  {
+    title: '个人设置',
+    url: '/profile',
+    onlyAdmin: false,
   },
 ];

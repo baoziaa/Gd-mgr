@@ -57,6 +57,11 @@ const routes = [
         name: 'DataAnalysis',
         component: () => import(/* webpackChunkName: "DataAnalysis" */ '../views/DataAnalysis/index.vue'),
       },
+      {
+        path: '/profile',
+        name: 'Profile',
+        component: () => import(/* webpackChunkName: "Profile" */ '../views/Profile/index.vue'),
+      },
     ],
   },
 ];

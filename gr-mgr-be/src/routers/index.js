@@ -1,11 +1,13 @@
 const auth = require('./auth');  //引入auth文件夹下的index.js文件(那边导出我就可以引入)
 const inviteCode = require('./Invite-code'); //引入Incite-code
 const record = require('./record'); //引入routers下面的record下面的index.js,index.js文件可以省略
-const user = require('./user')
-const character = require('./character')
-const log = require('./log')
-const forgetPassword = require('./forget-password')
-const DestinationClassifiy = require('./destination-classifiy')
+const user = require('./user');
+const character = require('./character');
+const log = require('./log');
+const forgetPassword = require('./forget-password');
+const DestinationClassifiy = require('./destination-classifiy');
+const profile = require('./profile');
+
 
 
 module.exports = (app) => { //导出
@@ -18,4 +20,5 @@ module.exports = (app) => { //导出
   app.use(log.routes());
   app.use(forgetPassword.routes());
   app.use(DestinationClassifiy.routes());
+  app.use(profile.routes());
 };
