@@ -7,6 +7,7 @@ const log = require('./log');
 const forgetPassword = require('./forget-password');
 const DestinationClassifiy = require('./destination-classifiy');
 const profile = require('./profile');
+const dashboard = require('./dashboard');
 
 
 
@@ -21,4 +22,5 @@ module.exports = (app) => { //导出
   app.use(forgetPassword.routes());
   app.use(DestinationClassifiy.routes());
   app.use(profile.routes());
+  app.use(dashboard.routes());
 };

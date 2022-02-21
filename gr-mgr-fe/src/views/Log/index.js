@@ -19,17 +19,25 @@ const columns =[
       customRender: 'createdAt',
     },
   },
-  {
-    title: '操作',
-    slots: {
-      customRender: 'action',
-    },
-  },
 ];
 
 
 export default defineComponent({
-  setup() {
+  props: {
+    simple: Boolean,
+  },
+  setup(props) {
+    if (!props.simple) {
+      columns.push(
+        {
+          title: '操作',
+          slots: {
+            customRender: 'action',
+          },
+        },
+      );
+    }
+
     const curPage = ref(1);
     const total = ref(0);
     const list = ref([]);
@@ -80,6 +88,7 @@ export default defineComponent({
       loading,
       formatTimestampDetail,
       remove,
+      simple: props.simple,
     };
   },
 });

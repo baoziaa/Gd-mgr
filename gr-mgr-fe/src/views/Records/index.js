@@ -12,7 +12,10 @@ export default defineComponent({
     AddOne,
     Update,
   },
-  setup() {
+  props: {
+    simple: Boolean,
+  },
+  setup(props) {
     const router = useRouter();
 
     const columns = [
@@ -77,14 +80,19 @@ export default defineComponent({
         title: '联系电话',
         dataIndex: 'tel',
       },
-      {
-        title: '操作',
-        slots: {
-          customRender: 'actions',
-        },
-      },
     ]; // 它是一个数组,每一项代表每一列的配置项
 
+
+    if (!props.simple) {
+      columns.push(
+        {
+          title: '操作', 
+          slots: {
+            customRender: 'actions',
+          },
+        },
+      );
+    }
 
     const show = ref(false);
     // 设置更新弹框的默认关闭
@@ -240,6 +248,7 @@ export default defineComponent({
       getList,
       getDestinationClassifiyTitleById,
       // DestinationClassifiyList,
+      simple: props.simple,
     };
   },
 });

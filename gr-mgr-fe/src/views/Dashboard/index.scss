@@ -1,0 +1,32 @@
+.list {
+  display: flex;
+
+  .item {
+    flex: 1;
+    text-align: center;
+
+    .count {
+      font-size: 24px;
+      font-weight: 700;
+      color: black;
+    }
+    .title {
+      margin-top: 6px;
+      color: #666;
+    }
+  }
+}
+
+.table-list {
+  display: flex;
+
+  .left {
+    flex: 1.5;
+    margin-right: 5px;
+
+  }
+
+  .right {
+    flex: 1;
+  }
+}

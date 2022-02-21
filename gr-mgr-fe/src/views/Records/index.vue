@@ -1,27 +1,30 @@
 <template>
   <div>
-    <a-card>
-      <h2>数据列表</h2>
+    <a-card
+      :title="simple ? '最近添加的数据' : '数据列表'"
+    >
+      <div v-if="!simple">
       <!-- 分割线 -->
-      <a-divider />
+        <a-divider />
 
-      <space-between>
-        <div class="search">
-          <a-input-search
-           placeholder="根据姓名搜索"
-           enter-button
-           v-model:value="keyword"
-           @search="onSearch"
-            />
-          <!-- javascript:;防止点击的时候页面会跳转 -->
-          <a v-if="isSearch" href="javascript:;" @click="backAll">返回</a>
-        </div>
-        <a-button
-          @click="show = true"
-        >添加一条</a-button>
-      </space-between>
+        <space-between>
+          <div class="search">
+            <a-input-search
+            placeholder="根据姓名搜索"
+            enter-button
+            v-model:value="keyword"
+            @search="onSearch"
+              />
+            <!-- javascript:;防止点击的时候页面会跳转 -->
+            <a v-if="isSearch" href="javascript:;" @click="backAll">返回</a>
+          </div>
+          <a-button
+            @click="show = true"
+          >添加一条</a-button>
+        </space-between>
 
-      <a-divider />
+        <a-divider />
+      </div>
       <a-table
       :columns="columns"
       :data-source="list"
@@ -37,7 +40,7 @@
           {{formatTimestamp(data.record.graddate)}}
         </template>
 
-        <template #actions="arecord">
+        <template #actions="arecord" v-if="!simple">
           <a href="javascript:;" @click="update(arecord)">编辑</a>
           &nbsp;
           <a href="javascript:;" v-only-admin @click="confirmBox(arecord)">删除</a>
@@ -52,6 +55,7 @@
           :total="total"
           :page-size="10"
           @change="setPage"
+          v-if="!simple"
         />
       </space-between>
     </a-card>

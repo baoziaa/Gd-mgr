@@ -1,7 +1,6 @@
 <template>
   <div>
-    <a-card v-only-admin>
-      <h2>用户管理</h2>
+    <a-card v-only-admin title="角色管理">
 
       <a-divider />
 

@@ -9,6 +9,8 @@ const LOG_MAP = [
   ['/auth/login', '登入成功'],
   ['/forget-password/add', '添加忘记密码'],
   ['/forget-password/list', '获取忘记密码列表'],
+  ['/destination-classifiy/list', '获取去向分类列表'],
+  ['/dashboard/base-info', '获取总览页面信息'],
 ];
 
 // 获取日志信息路径

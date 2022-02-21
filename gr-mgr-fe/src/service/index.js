@@ -10,4 +10,5 @@ export * as resetPassword from './reset-password';
 export * as inviteCode from './invite-code';
 export * as DestinationClassifiy from './destination-classifiy';
 export * as profile from './profile';
+export * as dashboard from './dashboard';
 

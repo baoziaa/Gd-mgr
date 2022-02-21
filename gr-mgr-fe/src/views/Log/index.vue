@@ -1,12 +1,9 @@
 <template>
   <div>
     <a-spin :spinning="loading">
-      <a-card>
-      <h2>操作日志</h2>
-
-      <a-divider />
-
+      <a-card :title="simple ? '最近操作的日志' : '日志管理'">
       <div>
+        <a-divider v-if="!simple" />
         <a-table
           bordered
           :columns="columns"
@@ -17,7 +14,7 @@
             <!-- {{record}} -->
             {{ formatTimestampDetail(record.meta.createdAt) }}
           </template>
-          <template #action="{record}">
+          <template #action="{record}" v-if="!simple">
             <a href="javascript:;" @click="remove(record)">删除</a>
           </template>
         </a-table>
@@ -28,6 +25,7 @@
             :pageSize="20"
             :total="total"
             @change="setPage"
+            v-if="!simple"
           />
         </space-end>
 
