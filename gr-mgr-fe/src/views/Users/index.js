@@ -4,7 +4,7 @@ import { result, formatTimestampDetail } from '@/helpers/utils';
 import { message, Modal } from 'ant-design-vue';
 import AddOne from './AddOne/index.vue';
 import { getCharacterInfoById } from '@/helpers/character';
-import { EditOutlined } from '@ant-design/icons-vue';
+import { EditOutlined, UploadOutlined } from '@ant-design/icons-vue';
 import store from '@/store';
 
 const columns = [
@@ -38,6 +38,7 @@ export default defineComponent({
   components: {
     AddOne,
     EditOutlined,
+    UploadOutlined,
   },
   setup() {
     // 存放用户信息
@@ -146,6 +147,18 @@ export default defineComponent({
         });
     };
 
+    const onUploadChange = ({ file }) => {
+      if (file.response) {
+        result(file.response)
+          .success( async (key,{msg}) => {
+            // console.log(file.response,key);
+            const res = await user.addMany(key);
+            message.success(msg);
+            getUser();
+          });
+      }
+    };
+
     return {
       list,
       total,
@@ -169,6 +182,7 @@ export default defineComponent({
       editForm,
       characterInfo,
       updateCharacter,
+      onUploadChange,
     };
   },
   

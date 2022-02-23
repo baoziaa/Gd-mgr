@@ -1,11 +1,11 @@
 <template>
   <div>
-    <a-card v-only-admin title="角色管理">
+    <a-card v-only-admin title="用户管理">
 
       <a-divider />
 
       <space-between>
-        <div class="search">
+        <div class="search" >
           <a-input-search
            placeholder="根据账户搜索"
            enter-button
@@ -15,9 +15,22 @@
           <!-- javascript:;防止点击的时候页面会跳转 -->
           <a v-if="isSearch" href="javascript:;" @click="backAll">返回</a>
         </div>
-      <a-button @click="showAddModel = true">添加用户</a-button>
+        
+        <div>
+          <a-button @click="showAddModel = true" >添加用户</a-button>
+          &nbsp;
+          <a-upload
+            action="http://localhost:3000/upload/file"
+            @change="onUploadChange"
+          >
+            <a-button @click="upload" type="primary">
+              <upload-outlined />
+              上传 Excel
+            </a-button>
+          </a-upload>
+        </div>
+      
       </space-between>
-
 
       <a-divider />
 

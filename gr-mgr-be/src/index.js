@@ -19,11 +19,16 @@ const app = new Koa();
 
 connect().then(() => {
   app.use(cors());  //处理跨域的一个中间件
-  app.use(koaBody()); //它是一个函数,要放在registerRoutes之前,因为每个router触发的时候都要处理好Body请求体上面的信息(如上传文件大小,支不支持上传多个文件)
+  app.use(koaBody({
+    multipart: true, //为true才能上传,http相关内容
+    formidable: {
+      maxFieldsSize: 200 * 1024 * 1024, //上传文件的尺寸
+    },
+  })); //它是一个函数,要放在registerRoutes之前,因为每个router触发的时候都要处理好Body请求体上面的信息(如上传文件大小,支不支持上传多个文件)
   
-  app.use(catchTokenError); //解析报错用catchTokenError注册中间件进行捕获
+/*   app.use(catchTokenError); //解析报错用catchTokenError注册中间件进行捕获
   
-  koaJwtMiddleware(app); // token校验
+  koaJwtMiddleware(app); // token校验 */
 
   app.use(logMiddleware); //获取日志信息
   

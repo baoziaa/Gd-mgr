@@ -34,6 +34,7 @@ export default defineComponent({
       result(res) //d代表成功时候的响应
         .success((d,{ data }) => { //成功的时候做出的反应,把defaultFormData合并到addForm,达到清空表单的一个效果
           Object.assign(addForm,defaultFormData);
+          addForm.character = characterInfo[1]._id;
           message.success(data.msg);
           close();
           context.emit('getList');

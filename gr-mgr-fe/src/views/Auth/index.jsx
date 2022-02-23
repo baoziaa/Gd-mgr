@@ -119,8 +119,8 @@ export default defineComponent({
         // console.log(store.state);
 
         setToken(token);
-
-        router.replace("/records");
+        // 替换到/dashboard页面
+        router.replace("/dashboard");
       });
     };
 

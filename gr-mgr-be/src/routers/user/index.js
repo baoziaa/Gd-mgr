@@ -3,6 +3,7 @@ const mongoose = require('mongoose'); //引入mongoose,拿到对应的Usermodel
 const { v4: uuidv4 } = require('uuid');
 const config = require('../../project.config');
 const { verify, getToken } = require('../../helpers/token');
+const { loadExcel, getFirstSheet } = require('../../helpers/excel');
 
 // const { getBody } = require('../../helpers/utils');
 
@@ -108,6 +109,48 @@ router.post('/add', async (ctx) => {
     msg: '添加成功',
   };
 
+});
+
+// 批量添加用户
+router.post('/addMany', async (ctx) => {
+  const {
+    key = '', //文件名
+  } = ctx.request.body;
+  // 文件路径
+  const path = `${config.UPLOAD_DIR}/${key}`;
+  // 传入路径,读取Excel文件
+  const excel = loadExcel(path);
+  // 拿到第一个sheet数据
+  const sheet = getFirstSheet(excel);
+
+  // 查找角色信息
+  const character = await Character.find().exec();
+  // console.log(character);
+
+  // 设置上传的用户是普通成员
+  const member1 = character.find((item) => (item.name === 'member1'));
+
+  // console.log(member1);
+
+  // console.log(sheet);
+  const arr = [];
+  sheet.forEach((record) => {
+    const [account, password = config.DEFAULT_PASSWORD] = record;
+
+    arr.push({
+      account,
+      password,
+      character: member1._id,
+    });
+  });
+
+  await User.insertMany(arr);
+
+  ctx.body = {
+    code: 1,
+    msg: '添加成功'
+  };
+  
 });
 
 // 重置密码

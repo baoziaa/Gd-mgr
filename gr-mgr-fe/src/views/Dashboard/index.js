@@ -31,7 +31,7 @@ export default defineComponent({
       result(res)
         .success(({ data, msg }) => {
           baseInfo.value = data;
-          message.success(msg);
+          // message.success(msg);
         });
       
     };
