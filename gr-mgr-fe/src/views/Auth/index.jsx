@@ -111,14 +111,17 @@ export default defineComponent({
 
       const res = await auth.login(loginForm.account, loginForm.password);
 
-      result(res).success(({ msg, data: { user, token } }) => {
+      result(res).success( async ({ msg, data: { user, token } }) => {
         message.success(msg);
+        // 设置token
+        setToken(token);
 
+        await store.dispatch('getCharacterInfo'); //拿到用户角色的信息
+        
         store.commit("setUserInfo", user);
         store.commit("setuserCharacter", getCharacterInfoById(user.character));
         // console.log(store.state);
 
-        setToken(token);
         // 替换到/dashboard页面
         router.replace("/dashboard");
       });

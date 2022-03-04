@@ -7,7 +7,7 @@
       </div>
       <div class="header-right">
         <div class="hello-msg">你好,帅包包\(￣︶￣*\))</div>
-        <div class="logout">退出</div>
+        <div class="logout" @click="logout">退出</div>
       </div>
     </div>
     <div class="gr-header-placeholder"></div>

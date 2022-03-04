@@ -112,6 +112,14 @@ router.post('/addMany', async (ctx) => {
       gradId = one._id;
     }
 
+    const existenceOne = await Record.findOne({
+      stuid,
+    });
+
+    // 如果存在这个学号信息就跳过
+    if (existenceOne) {
+      continue;
+    }
 
     // 把账户密码以及角色信息推送到数组里面
     arr.push({

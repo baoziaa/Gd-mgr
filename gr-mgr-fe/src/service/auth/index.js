@@ -1,16 +1,14 @@
-/* 所有的接口都会放在这里 */
-
-import axios from 'axios';
+import { post } from '@/helpers/request';
 
 // 在views下面auth下面的index.js去用
-export const register = (account, password, inviteCode) => axios.post('http://localhost:3000/auth/register', { // post方法,把地址传过去
+export const register = (account, password, inviteCode) => post('/auth/register', { // post方法,把地址传过去
   account,
   password,
   inviteCode,
 });
 
 // 这里拿到账户和密码
-export const login = (account, password) => axios.post('http://localhost:3000/auth/login', {
+export const login = (account, password) => post('/auth/login', {
   account,
   password,
 });

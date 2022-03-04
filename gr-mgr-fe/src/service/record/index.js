@@ -1,52 +1,52 @@
-/* 所有的接口都会放在这里 */
+import {
+  post, get, del
+} from '@/helpers/request';
 
 // 在views下面auth下面的index.js去用
-import axios from 'axios';
-import { getToken } from '@/helpers/token';
+
+// import { getToken } from '@/helpers/token';
 // 每次请求都会带上Authorization
-axios.defaults.headers['Authorization'] = `Bearer ${getToken()}`;
+// axios.defaults.headers['Authorization'] = `Bearer ${getToken()}`;
 
 // 添加一条数据
-export const add = (form) => axios.post(
-  'http://localhost:3000/record/add', 
+export const add = (form) => post(
+  '/record/add', 
   form,
 );
 
 // 获取数据列表
 export const list = (data) => {
-  return axios.get(
-    'http://localhost:3000/record/list',
-    {
-      params: data,
-    }, // axios下面get一个传值方法
-  );
+  return get(
+    '/record/list',
+    data
+    );
 } 
 
 // 删除
 export const remove = (id) => {
-  return axios.delete(
-    `http://localhost:3000/record/${id}`,
+  return del(
+    `/record/${id}`,
   );
 } 
 
 // 数据的编辑
 export const update = (data = {}) => {
-  return axios.post(
-    `http://localhost:3000/record/update`,
+  return post(
+    `/record/update`,
     data,
   );
 };
 
 // 详情
 export const detail = (id) => {
-  return axios.get(
-    `http://localhost:3000/record/detail/${id}`,
+  return get(
+    `/record/detail/${id}`,
   );
 };
 
 // 批量添加数据
 export const addMany = (key) => {
-  return axios.post('http://localhost:3000/record/addMany',{
+  return post('/record/addMany',{
     key,
   });
 };
