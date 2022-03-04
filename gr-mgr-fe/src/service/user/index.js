@@ -48,7 +48,7 @@ export const info = () => {
   return axios.get('http://localhost:3000/user/info');
 };
 
-// 拿取用户的数据
+// 批量添加用户
 export const addMany = (key) => {
   return axios.post('http://localhost:3000/user/addMany',{
     key,

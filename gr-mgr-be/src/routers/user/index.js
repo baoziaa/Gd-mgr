@@ -133,8 +133,34 @@ router.post('/addMany', async (ctx) => {
   // console.log(member1);
 
   // console.log(sheet);
+  // 设置一个空数组
   const arr = [];
-  sheet.forEach((record) => {
+
+  // 遍历
+  for (let i = 0; i < sheet.length; i++) {
+    const record = sheet[i];
+
+    // 默认密码是123123
+    const [account, password = config.DEFAULT_PASSWORD] = record;
+
+    const one = await User.findOne({
+      account,
+    });
+
+    // 如果存在这个角色信息就跳过
+    if (one) {
+      continue;
+    }
+
+    // 把账户密码以及角色信息推送到数组里面
+    arr.push({
+      account,
+      password,
+      character: member1._id,
+    });
+    
+  }
+/*   sheet.forEach((record) => {
     const [account, password = config.DEFAULT_PASSWORD] = record;
 
     arr.push({
@@ -142,13 +168,16 @@ router.post('/addMany', async (ctx) => {
       password,
       character: member1._id,
     });
-  });
+  }); */
 
   await User.insertMany(arr);
 
   ctx.body = {
     code: 1,
-    msg: '添加成功'
+    msg: '添加成功',
+    data: {
+      addCount: arr.length,
+    },
   };
   
 });

@@ -227,6 +227,24 @@ export default defineComponent({
       router.push(`/records/${arecord.record._id}`);
     };
 
+    // 上传Excel
+    const onUploadChange = ({ file }) => {
+      if (file.response) {
+        result(file.response)
+          .success( async (key) => {
+            // console.log(file.response,key);
+            const res = await record.addMany(key);
+
+            result(res)
+              .success(({ data: { addCount } }) => {
+                message.success(`成功添加${addCount}条数据`);
+              });
+
+              getList();
+          });
+      }
+    };
+    
     return {
       columns,
       show,
@@ -249,6 +267,7 @@ export default defineComponent({
       getDestinationClassifiyTitleById,
       // DestinationClassifiyList,
       simple: props.simple,
+      onUploadChange,
     };
   },
 });

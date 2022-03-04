@@ -27,6 +27,8 @@ router.post('/update/password', async (ctx) => {
     _id,
   }).exec();
 
+  console.log(user);
+
   if (!user) {
     ctx.body = {
       msg: '用户不存在',

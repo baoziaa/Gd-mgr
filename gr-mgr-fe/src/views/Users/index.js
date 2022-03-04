@@ -150,11 +150,16 @@ export default defineComponent({
     const onUploadChange = ({ file }) => {
       if (file.response) {
         result(file.response)
-          .success( async (key,{msg}) => {
+          .success( async (key) => {
             // console.log(file.response,key);
             const res = await user.addMany(key);
-            message.success(msg);
-            getUser();
+            
+            result(res)
+              .success(({ data: { addCount } }) => {
+                message.success(`成功添加${addCount}个用户`);
+              });
+            
+              getUser();
           });
       }
     };

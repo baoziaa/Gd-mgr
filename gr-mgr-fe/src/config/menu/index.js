@@ -1,6 +1,6 @@
 export default [
   {
-    title: '总览',
+    title: '总览页面',
     url: '/dashboard',
     onlyAdmin: true,
   },

@@ -43,3 +43,10 @@ export const detail = (id) => {
     `http://localhost:3000/record/detail/${id}`,
   );
 };
+
+// 批量添加数据
+export const addMany = (key) => {
+  return axios.post('http://localhost:3000/record/addMany',{
+    key,
+  });
+};

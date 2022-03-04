@@ -23,7 +23,7 @@
             action="http://localhost:3000/upload/file"
             @change="onUploadChange"
           >
-            <a-button @click="upload" type="primary">
+            <a-button type="primary">
               <upload-outlined />
               上传 Excel
             </a-button>

@@ -18,9 +18,25 @@
             <!-- javascript:;防止点击的时候页面会跳转 -->
             <a v-if="isSearch" href="javascript:;" @click="backAll">返回</a>
           </div>
-          <a-button
-            @click="show = true"
-          >添加一条</a-button>
+
+          <div>
+            <a-button
+              @click="show = true"
+            >
+            添加一条
+            </a-button>
+              &nbsp;
+            <a-upload
+            action="http://localhost:3000/upload/file"
+            @change="onUploadChange"
+            >
+              <a-button type="primary">
+                <upload-outlined />
+                上传 Excel
+              </a-button>
+            </a-upload>
+          </div>
+
         </space-between>
 
         <a-divider />
