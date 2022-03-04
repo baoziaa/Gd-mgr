@@ -14,6 +14,7 @@
       <!-- 一级导航a-sub-menu -->
       <a-sub-menu
         v-if="item.children"
+        :key="item.title"
       >
       <template #title>{{ item.title }}</template>
         <a-menu-item
