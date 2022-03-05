@@ -1,4 +1,4 @@
-import { createApp } from 'vue';
+import { createApp, VueElement } from 'vue';
 import Antd from 'ant-design-vue';
 import App from './App.vue';
 import router from './router';
@@ -8,9 +8,13 @@ import SpaceBetween from './components/SpaceBetween/index.vue';
 import FlexEnd from './components/FlexEnd/index.vue';
 import { regDirectives } from '@/helpers/directive';
 
+
 const app = createApp(App)
 
+
 regDirectives(app);
+
+
 
 app
   .use(store)

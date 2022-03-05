@@ -86,7 +86,7 @@
       </div>
     </a-card>
 
-    <div class="log">
+    <div class="log" style="display:none">
       <a-card title="日志">
         <template #extra>
           <span>
