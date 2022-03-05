@@ -22,6 +22,7 @@
           <a-upload
             action="http://localhost:3000/upload/file"
             @change="onUploadChange"
+            :headers="headers"
           >
             <a-button type="primary">
               <upload-outlined />

@@ -7,7 +7,7 @@ const getURL = (path) => {
   return `${domain}${path}`;
 };
 
-const getHeaders = () => {
+export const getHeaders = () => {
   return {
     Authorization: `Bearer ${getToken()}`
   }

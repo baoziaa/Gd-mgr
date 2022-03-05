@@ -5,6 +5,7 @@ import {useRouter} from 'vue-router'; //操作路由的一些方法,例前进页
 import { result, formatTimestamp } from '@/helpers/utils'
 import AddOne from './AddOne/index.vue';//引入AddOne,然后再component里进行注册
 import Update from './Update/index.vue';//引入Update,然后再component里进行注册
+import { getHeaders } from '@/helpers/request';
 import { getDestinationClassifiyTitleById } from '@/helpers/destination-classifiy'; //根据Id判断分类名称
 
 export default defineComponent({
@@ -268,6 +269,7 @@ export default defineComponent({
       // DestinationClassifiyList,
       simple: props.simple,
       onUploadChange,
+      headers: getHeaders(),
     };
   },
 });
