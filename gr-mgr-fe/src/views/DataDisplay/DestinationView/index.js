@@ -12,7 +12,7 @@ export default defineComponent({
       // 指定图表的配置项和数据
       var option = {
         title: {
-          text: '学生去向分布图'
+          text: '高等院校毕业学生去向分布图'
         },
         tooltip: {},
         legend: {

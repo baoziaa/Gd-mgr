@@ -74,7 +74,7 @@ export default defineComponent({
       result(res)
         .success(({ msg }) => {
           message.success(msg);
-          // getList();
+          getList();
         })
     };
 

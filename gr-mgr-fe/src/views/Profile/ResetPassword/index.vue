@@ -3,7 +3,7 @@
     <a-card title="修改密码">
       <a-form :model="form" :label-col="{ span:4 }" :wrapper-col="{ span:4 }">
         <a-form-item label="原始密码">
-          <a-input v-model:value="resetPasswordFrom.oldPassword" />
+          <a-input-password v-model:value="resetPasswordFrom.oldPassword" />
         </a-form-item>
         <a-form-item label="新密码">
           <a-input-password v-model:value="resetPasswordFrom.newPassword" />

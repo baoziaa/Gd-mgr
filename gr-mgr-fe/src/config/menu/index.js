@@ -1,5 +1,4 @@
-export default [
-  {
+export default [{
     title: '总览页面',
     url: '/dashboard',
     onlyAdmin: false,
@@ -12,12 +11,12 @@ export default [
   {
     title: '数据展示',
     url: '/data-display',
-    onlyAdmin: true,
+    onlyAdmin: false,
   },
   {
     title: '数据分析',
     url: '/data-analysis',
-    onlyAdmin: true,
+    onlyAdmin: false,
   },
   {
     title: '角色管理',
@@ -32,8 +31,7 @@ export default [
   {
     title: '杂项管理',
     onlyAdmin: true,
-    children: [
-      {
+    children: [{
         title: '重置密码管理',
         url: '/reset/password',
         onlyAdmin: true,

@@ -11,6 +11,8 @@ const LOG_MAP = [
   ['/forget-password/list', '获取忘记密码列表'],
   ['/destination-classifiy/list', '获取去向分类列表'],
   ['/dashboard/base-info', '获取总览页面信息'],
+  ['/user/addMany', '上传Excel批量添加用户'],
+  ['/record/addMany', '上传Excel批量添加数据'],
 ];
 
 // 获取日志信息路径

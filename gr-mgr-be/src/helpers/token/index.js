@@ -36,6 +36,7 @@ const middleWare = (app) => {
     path: [ //path里面表示哪些路径是不需要做校验的
       /^\/auth\/login/, //正则表达式登录的接口
       /^\/auth\/register/, //注册的接口
+      /^\/forget-password\/add/, //忘记密码申请的接口
     ],
   }));
 };

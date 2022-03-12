@@ -2,7 +2,14 @@
   <div class="echarts-container">
     <a-card title="数据信息展示">
       <div class="inner">
+        <a-divider />
         <destination-view />
+        <a-divider />
+        <graduates-view />
+        <a-divider />
+        <salary-view />
+        <a-divider />
+        <nature-view />
       </div>
     </a-card>
   </div>

@@ -135,7 +135,7 @@ export default defineComponent({
       // 登录相关的数据
       loginForm,
       login,
-      forgetPassword
+      forgetPassword,
     };
   }
 });
