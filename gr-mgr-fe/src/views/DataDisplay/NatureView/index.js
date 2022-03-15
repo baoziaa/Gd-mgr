@@ -13,7 +13,7 @@ export default defineComponent({
       // 指定图表的配置项和数据
       var option = {
         title: {
-          text: '高等院校毕业单位性质分析图'
+          text: '毕业生毕业去向单位性质分布图'
         },
         legend: {
           top: 'bottom'

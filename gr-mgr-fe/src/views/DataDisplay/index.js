@@ -3,7 +3,7 @@ import DestinationView from './DestinationView/index.vue';
 import SalaryView from './SalaryView/index.vue';
 import GraduatesView from './GraduatesView/index.vue';
 import NatureView from './NatureView/index.vue';
-
+import DistributionView from './DistributionView/index.vue';
 
 export default defineComponent({
   components: {
@@ -11,6 +11,7 @@ export default defineComponent({
     SalaryView,
     GraduatesView,
     NatureView,
+    DistributionView,
   },
   setup() {
     

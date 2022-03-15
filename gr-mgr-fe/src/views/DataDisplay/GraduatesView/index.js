@@ -12,7 +12,7 @@ export default defineComponent({
       // 指定图表的配置项和数据
       var option = {
         title: {
-          text: '高等院校毕业人数折线分析图'
+          text: '毕业生毕业人数折线分析图'
         },
         tooltip: {
           trigger: 'axis'

@@ -12,7 +12,7 @@ export default defineComponent({
       // 指定图表的配置项和数据
       var option = {
         title: {
-          text: '高等院校毕业薪资饼状图'
+          text: '毕业生毕业薪资饼分布图'
         },
         tooltip: {
           trigger: 'item'

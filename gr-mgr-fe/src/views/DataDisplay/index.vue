@@ -10,6 +10,9 @@
         <salary-view />
         <a-divider />
         <nature-view />
+        <a-divider />
+        <distribution-view />
+
       </div>
     </a-card>
   </div>

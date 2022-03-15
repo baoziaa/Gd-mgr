@@ -1,39 +1,43 @@
 import { defineComponent, ref, onMounted } from 'vue'; 
 import * as echarts from 'echarts';
+import 'echarts/extension/bmap/bmap';
+import chinaJson from '../../../assets/data.json';
 
 export default defineComponent({
   setup() {
     const chart = ref();
+
+    echarts.registerMap('chinaJson',chinaJson);
+
+    const testPoint = [{
+      name: '北京市',
+      value: [116.405285,39.904989,500]
+    },
+    {
+      name: '上海市',
+      value: [121.472644,31.231706,300]
+    },
+  ]
     
     function init () {
       // 基于准备好的dom，初始化echarts实例
       var myChart = echarts.init(chart.value);
+      
 
       // 指定图表的配置项和数据
       var option = {
         title: {
-          text: '毕业生毕业去向分类分布图'
+          text: '毕业生去向省份分布'
         },
-        tooltip: {},
         legend: {
-          data: ['数据']
+          top: 'bottom'
         },
-        yAxis: {
-          data: ['立即就业', '待定', '考研', '考公', '出国深造', '先实习一段时间']
-        },
-        xAxis: {},
         series: [
           {
-            name: '数据',
-            type: 'bar',
-            data: [5, 20, 36, 10, 1, 20],
-            barWidth: '30%',
-            itemStyle: {
-              barBorderRadius: 1,
-              borderType: 'solid',
-            }
-          },
-          
+            type: 'map',
+            map: 'chinaJson',
+            data: testPoint
+          }
         ]
       };
 
