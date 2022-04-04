@@ -19,6 +19,11 @@ export default [{
     onlyAdmin: false,
   },
   {
+    title: '调查反馈',
+    url: '/feedback',
+    onlyAdmin: false,
+  },
+  {
     title: '角色管理',
     url: '/user',
     onlyAdmin: true,

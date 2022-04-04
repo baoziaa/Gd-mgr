@@ -69,7 +69,7 @@ export default defineComponent({
     editForm.character = characterInfo[1]._id;
 
     const getUser = async () => {
-      const res = await user.list(curPage.value, 3, keyword.value); //默认size先写死3条
+      const res = await user.list(curPage.value, 10, keyword.value); //默认size先写死3条
 
       result(res)
         .success(({ data: {list: reslist, total: restotal} }) => {
@@ -102,6 +102,7 @@ export default defineComponent({
       });
     };
 
+    // 分页跳转
     const setPage =  (page) => {
       curPage.value = page;
       getUser();

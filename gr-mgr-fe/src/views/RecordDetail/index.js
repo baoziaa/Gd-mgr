@@ -1,6 +1,6 @@
 import { defineComponent, onMounted, ref } from 'vue';
 import {useRoute, useRouter} from 'vue-router'; //指当前页面跟路由相关的信息,例:url里面的参数有哪些
-import { result, formatTimestamp, formatTimestampDetail } from '@/helpers/utils'
+import { result, formatTimestamp, formatTimestampDetail } from '@/helpers/utils';
 import { record } from '@/service';
 import { message, Modal } from 'ant-design-vue';
 import { DeleteOutlined, FormOutlined } from '@ant-design/icons-vue';

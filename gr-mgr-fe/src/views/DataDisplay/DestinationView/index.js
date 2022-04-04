@@ -26,7 +26,7 @@ export default defineComponent({
           {
             name: '数据',
             type: 'bar',
-            data: [5, 20, 36, 10, 1, 20],
+            data: [15, 5, 10, 6, 0, 8],
             barWidth: '30%',
             itemStyle: {
               barBorderRadius: 1,

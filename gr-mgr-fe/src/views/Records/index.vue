@@ -46,8 +46,9 @@
       :columns="columns"
       :data-source="list"
       :pagination = "false"
-      :scroll="{ x: 'calc(700px + 81%)', y: 340 }"
+      :scroll="{ x: 'calc(700px + 81%)', y: 840 }"
       bordered
+      @change="changeTab"
       >
         <template #classify="{ record }">
           {{ getDestinationClassifiyTitleById(record.grad) }}

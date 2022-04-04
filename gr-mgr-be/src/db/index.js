@@ -6,6 +6,7 @@ require('./Schemas/Log');
 require('./Schemas/LogResponse');
 require('./Schemas/ForgetPassword');
 require('./Schemas/DestinationClassifiy');
+require('./Schemas/MessageBoard');
 
 
 const mongoose = require('mongoose');

@@ -23,6 +23,8 @@ export default defineComponent({
       {
         title: '学号',
         dataIndex: 'stuid',
+        sorter: true,
+        sortDirections: ['descend', 'ascend'],
       },
       {
         title: '姓名',
@@ -245,6 +247,11 @@ export default defineComponent({
           });
       }
     };
+
+    const changeTab = (pagination, filters, { field, order }) => {
+      // console.log(p, f, s);
+      
+    };
     
     return {
       columns,
@@ -270,6 +277,7 @@ export default defineComponent({
       simple: props.simple,
       onUploadChange,
       headers: getHeaders(),
+      changeTab,
     };
   },
 });

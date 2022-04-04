@@ -29,4 +29,4 @@ const LogSchema = new mongoose.Schema({
 
 LogSchema.pre('save',preSave);
 
-mongoose.model('Log',LogSchema);  //注册为一个模型,名字为InviteCode,传递给它InviteCodeSchema
+mongoose.model('Log',LogSchema);  //注册为一个模型

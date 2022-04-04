@@ -9,6 +9,8 @@ const DestinationClassifiy = require('./destination-classifiy');
 const profile = require('./profile');
 const dashboard = require('./dashboard');
 const upload = require('./upload');
+const map = require('./map');
+const MessageBoard = require('./message-board');
 
 
 
@@ -25,4 +27,6 @@ module.exports = (app) => { //导出
   app.use(profile.routes());
   app.use(dashboard.routes());
   app.use(upload.routes());
+  app.use(map.routes());
+  app.use(MessageBoard.routes());
 };

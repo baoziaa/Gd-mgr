@@ -10,6 +10,7 @@ export default defineComponent({
     const logout = () => {
       setToken('');
 
+      // 将路由重定向到/
       window.location.href = '/';
     };
 

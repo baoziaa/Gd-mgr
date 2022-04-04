@@ -64,7 +64,7 @@
         <a-pagination
           v-model:current="curPage"
           :total="total"
-          :page-size="3"
+          :page-size="10"
           @change="setPage"
          />
       </space-end>

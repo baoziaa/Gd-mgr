@@ -12,13 +12,10 @@ export default defineComponent({
       // 指定图表的配置项和数据
       var option = {
         title: {
-          text: '毕业生毕业人数折线分析图'
+          // text: '高校毕业生毕业人数趋势走向'
         },
         tooltip: {
           trigger: 'axis'
-        },
-        legend: {
-          data: ['先实习一段时间', '出国深造', '考公', '立即就业', '考研','待定']
         },
         grid: {
           left: '3%',

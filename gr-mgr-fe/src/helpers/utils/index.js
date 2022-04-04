@@ -13,7 +13,6 @@ export const result = (response, autoShowErrorMsg = true) => { // autoShowErrorM
     success(cb) { // 外面传一个回调函数进来cb
       if (data.code !== 0) {
         cb(data, response);
-
         return this; // 链式调用的效果,返回过去还是一个包含三个方法的对象
       }
     },

@@ -11,4 +11,6 @@ export * as inviteCode from './invite-code';
 export * as DestinationClassifiy from './destination-classifiy';
 export * as profile from './profile';
 export * as dashboard from './dashboard';
+export * as map from './map';
+export * as MessageBoard from './message-board';
 

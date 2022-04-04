@@ -4,7 +4,7 @@ const { v4: uuidv4 } = require('uuid');
 
 // const { getBody } = require('../../helpers/utils');
 
-const InviteCode = mongoose.model('InviteCode');//对应的Usermodel
+const InviteCode = mongoose.model('InviteCode');//对应的InviteCode
 
 const router = new Router({ //实例化
   prefix: '/invite',  //路由前缀
