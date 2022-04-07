@@ -16,6 +16,7 @@ router.get('/base-info', async (ctx) => {
   const userTotal = await User.countDocuments();
   const logTotal = await Log.countDocuments();
 
+
   ctx.body = {
     data: {
       total: {

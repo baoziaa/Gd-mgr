@@ -6,6 +6,7 @@ import Record from '../Records/index.vue';
 import Log from '../Log/index.vue';
 
 
+
 export default defineComponent({
   components: {
     Record,
@@ -22,6 +23,8 @@ export default defineComponent({
         log: 0,
       },
     });
+
+
     
     const getBashInfo = async () => {
       loading.value = true;
@@ -30,6 +33,7 @@ export default defineComponent({
 
       result(res)
         .success(({ data, msg }) => {
+          // console.log(data);
           baseInfo.value = data;
           // message.success(msg);
         });

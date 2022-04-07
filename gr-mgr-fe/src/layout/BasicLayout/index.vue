@@ -6,7 +6,7 @@
         <div class="title">毕业生去向管理系统</div>
       </div>
       <div class="header-right">
-        <div class="hello-msg">你好,admin</div>
+        <div class="hello-msg">欢迎你,{{userInfo}}</div>
         <div class="logout" @click="logout">退出</div>
       </div>
     </div>
