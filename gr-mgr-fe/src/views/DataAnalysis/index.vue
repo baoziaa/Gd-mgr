@@ -11,7 +11,13 @@
             <graduates-view />
           </a-col>
         </a-row>
+        <div>随着全国普通高校毕业生人数越来越多，选择考研人数也在逐渐增多。</div>
       </div>
+
+      <a-divider />
+      <a-divider />
+      <a-divider />
+
       <a-divider />
       <div class="inner">
         <h3>毕业生去向省份分布分析</h3>
@@ -20,6 +26,7 @@
             <distribution-view />
           </a-col>
         </a-row>
+        <div>选择就业的城市大多数在北上广分布居多</div>
       </div>
     </a-card>
   </div>

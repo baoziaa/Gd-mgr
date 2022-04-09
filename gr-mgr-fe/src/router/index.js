@@ -134,8 +134,15 @@ router.beforeEach(async (to, from, next) => {
 
   await Promise.all(reqArr);
 
+  // 拿到角色列表
+  // const { userInfo, characterInfo } = store.state;
+  
   if (to.path === '/auth') {
-    next('/dashboard');
+    if (characterInfo[0]._id === userInfo.character) {
+      next('/dashboard');
+    }else{
+      next('/records');
+    }
 
     return;
   }

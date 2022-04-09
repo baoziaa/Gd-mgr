@@ -1,7 +1,7 @@
 export default [{
     title: '总览页面',
     url: '/dashboard',
-    onlyAdmin: false,
+    onlyAdmin: true,
   },
   {
     title: '信息管理',

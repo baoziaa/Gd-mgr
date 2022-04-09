@@ -20,6 +20,8 @@ export default defineComponent({
     // 拿到角色列表
     const { userInfo } = store.state;
 
+    // console.log(userInfo.character);
+
     return {
       logout,
       userInfo : userInfo.account,

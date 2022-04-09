@@ -26,7 +26,7 @@
           </div>
         </template>
         
-        <template #actions="{ record }">
+        <template #actions="{ record }" v-if="!hide">
           <a-button size="small" ghost type="primary" @click="updateSubstance(record)" style="margin-bottom:3px">修改</a-button>
           <br/>
           <a-button size="small" type="danger" @click="confirmBox(record)">删除</a-button>

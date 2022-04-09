@@ -3,6 +3,7 @@ import { MessageBoard } from '@/service';
 import { result, formatTimestampDetail} from '@/helpers/utils';
 import { message, Modal, textarea } from 'ant-design-vue';
 import StyleOther from './index.scss';
+import store from '@/store';
 
 
 const columns = [
@@ -16,17 +17,37 @@ const columns = [
       customRender: 'CreateTime',
     },
   },
-  {
+/*   {
     title: '操作',
     slots: {
       customRender: 'actions',
     },
-  },
+  }, */
 ];
 
 
 export default defineComponent({
-  setup() {
+  props: {
+    hide: Boolean,
+  },
+  setup(props) {
+
+    // 拿到角色列表
+    const { userInfo, characterInfo } = store.state;
+    
+    // console.log(characterInfo[0]._id,userInfo.character);
+
+    // 如果当前登录的是管理员就push到列表里面
+    if (characterInfo[0]._id === userInfo.character) {
+      columns.push(
+        {
+          title: '操作',
+          slots: {
+            customRender: 'actions',
+          },
+        },
+      );
+    }
    // 总数默认0条
     const total = ref(0);
     // page默认第一页
@@ -124,6 +145,7 @@ export default defineComponent({
       confirmBox,
       updateSubstance,
       formatTimestampDetail,
+      hide: props.hide,
     }
     
   },
