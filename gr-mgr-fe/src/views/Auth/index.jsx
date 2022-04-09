@@ -111,6 +111,8 @@ export default defineComponent({
 
       const res = await auth.login(loginForm.account, loginForm.password);
 
+      
+
       result(res).success( async ({ msg, data: { user, token } }) => {
         message.success(msg);
         // 设置token
@@ -121,9 +123,16 @@ export default defineComponent({
         store.commit("setUserInfo", user);
         store.commit("setuserCharacter", getCharacterInfoById(user.character));
         // console.log(store.state);
+        // 从store.state里获取到管理员角色和当前成员的角色
+        const { userInfo, characterInfo } = store.state;
+        
+        // 如果是管理员角色替换到/dashboard页面,反义替换到/records
+        if (characterInfo[0]._id === userInfo.character) {
+          router.replace("/dashboard");
+        }
 
-        // 替换到/dashboard页面
-        router.replace("/dashboard");
+          router.replace("/records");
+
       });
     };
 

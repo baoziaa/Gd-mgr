@@ -135,7 +135,9 @@ router.beforeEach(async (to, from, next) => {
   await Promise.all(reqArr);
 
   // 拿到角色列表
-  // const { userInfo, characterInfo } = store.state;
+  const { userInfo, characterInfo } = store.state;
+
+  console.log(characterInfo[0]._id === userInfo.character)
   
   if (to.path === '/auth') {
     if (characterInfo[0]._id === userInfo.character) {
